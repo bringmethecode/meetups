@@ -23,7 +23,6 @@
           v-for="item in items"
           :key="item.title"
           @click=""
-          router
           :to="item.link"
         >
           <v-list-tile-action>
@@ -37,7 +36,7 @@
     </v-navigation-drawer>
     <v-toolbar class="primary" dark>
       <v-toolbar-side-icon
-        @click.native.stop="drawer = !drawer"
+        @click.stop="drawer = !drawer"
         class="hidden-sm-and-up"
       >
       </v-toolbar-side-icon>
@@ -51,7 +50,6 @@
         v-for="item in items"
         :key="item.title"
         @click=""
-        router
         :to="item.link"
       >
         <v-icon>{{ item.icon }}</v-icon>
