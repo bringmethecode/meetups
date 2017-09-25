@@ -1,6 +1,6 @@
 <template>
-  <v-container>
-    <v-layout row align-center>
+  <v-container fill-height>
+    <v-layout row align-center wrap>
       <v-flex xs12 md6>
         <h2 display-3>Welcome to Meetups</h2>
         <blockquote>

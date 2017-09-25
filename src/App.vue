@@ -1,9 +1,8 @@
 <template>
-  <v-app light>
+  <v-app light toolbar>
     <v-navigation-drawer
       temporary
       v-model="drawer"
-      light
       overflow
       absolute
     >
@@ -36,14 +35,14 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar class="primary">
+    <v-toolbar class="primary" dark>
       <v-toolbar-side-icon
         @click.native.stop="drawer = !drawer"
         class="hidden-sm-and-up"
       >
       </v-toolbar-side-icon>
       <v-toolbar-title>
-        <router-link :to="{ name: 'Home', params: {} }" tag="span" style="cursor: pointer">Meetups</router-link>
+        <router-link :to="{ name: 'Home', params: {} }" tag="span" style="cursor: pointer" light>Meetups</router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn
