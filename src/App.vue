@@ -20,7 +20,13 @@
       </v-list>
       <v-list class="pt-0" dense>
         <v-divider></v-divider>
-        <v-list-tile v-for="item in items" :key="item.title" @click="">
+        <v-list-tile
+          v-for="item in items"
+          :key="item.title"
+          @click=""
+          router
+          :to="item.link"
+        >
           <v-list-tile-action>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-tile-action>
@@ -36,9 +42,19 @@
         class="hidden-sm-and-up"
       >
       </v-toolbar-side-icon>
-      <v-toolbar-title>Meetups</v-toolbar-title>
+      <v-toolbar-title>
+        <router-link :to="{ name: 'Home', params: {} }" tag="span" style="cursor: pointer">Meetups</router-link>
+      </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn icon class="hidden-xs-only" v-for="item in items" :key="item.title" @click="">
+      <v-btn
+        icon
+        class="hidden-xs-only"
+        v-for="item in items"
+        :key="item.title"
+        @click=""
+        router
+        :to="item.link"
+      >
         <v-icon>{{ item.icon }}</v-icon>
       </v-btn>
     </v-toolbar>
@@ -54,11 +70,11 @@
       return {
         drawer: false,
         items: [
-          { title: 'Organize Meetup', icon: 'add_circle' },
-          { title: 'View Meetups', icon: 'supervisor_account' },
-          { title: 'Profile', icon: 'face' },
-          { title: 'Signup', icon: 'done_all' },
-          { title: 'Sign In', icon: 'https' }
+          { title: 'Organize Meetup', icon: 'add_circle', link: '/organize' },
+          { title: 'View Meetups', icon: 'supervisor_account', link: '/meetups' },
+          { title: 'Profile', icon: 'face', link: '/profile' },
+          { title: 'Signup', icon: 'done_all', link: '/signup' },
+          { title: 'Sign In', icon: 'https', link: '/signin' }
         ]
       }
     }
