@@ -36,6 +36,7 @@
             :src="meetup.imageUrl"
             transition="fade"
             reverseTransition="fade"
+            @click="onLoadMeetup(meetup.id)"
           >
             <h2 class="meetupTitle">{{ meetup.title }}</h2>
           </v-carousel-item>
@@ -46,23 +47,16 @@
 </template>
 
 <script>
-
 export default {
   name: 'home',
-  data () {
-    return {
-      meetups: [
-        {
-          id: 'ajaja',
-          title: 'M1',
-          imageUrl: 'https://assets3.thrillist.com/v1/image/2078277/size/tmg-facebook_social.jpg'
-        },
-        {
-          id: 'ajajajaja',
-          title: 'M2',
-          imageUrl: 'https://www.holidayguru.ie/wp-content/uploads/2017/01/Time-Square-New-York-City-iStock-487537456-2.jpg'
-        }
-      ]
+  computed: {
+    meetups () {
+      return this.$store.getters.featuredMeetups
+    }
+  },
+  methods: {
+    onLoadMeetup (id) {
+      this.$router.push('/meetups/' + id)
     }
   }
 }
@@ -89,6 +83,6 @@ export default {
   padding: 0 0.5em;
   color: #fff;
   margin: 0;
+  cursor: pointer;
 }
-
 </style>
