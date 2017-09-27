@@ -21,7 +21,7 @@
               <h6 title class="text-xs-center">ORGANIZE A NEW MEETUP</h6>
               <v-form
                 v-model="valid"
-                ref="form"
+                ref="meetupForm"
                 @submit.prevent="onSubmitMeetup"
               >
                 <v-text-field
@@ -49,22 +49,22 @@
                   multi-line
                   required
                 ></v-text-field>
+                <v-container class="pa-0">
+                  <v-layout>
+                    <v-flex xs6 offset-xs3>
+                      <v-card-actions>
+                        <v-btn
+                          type="submit"
+                          :class="{ green: valid, red: !valid }"
+                          :disabled="!valid"
+                        >create :D
+                        </v-btn>
+                        <v-btn @click="clear">clear :(</v-btn>
+                      </v-card-actions>
+                    </v-flex>
+                  </v-layout>
+                </v-container>
               </v-form>
-            </v-flex>
-          </v-layout>
-        </v-container>
-        <v-container>
-          <v-layout>
-            <v-flex xs6 sm4 offset-xs3 offset-sm4>
-              <v-card-actions>
-                <v-btn
-                  type="submit"
-                  :class="{ green: valid, red: !valid }"
-                  :disabled="!valid"
-                >create :D
-                </v-btn>
-                <v-btn @click="clear">clear :(</v-btn>
-              </v-card-actions>
             </v-flex>
           </v-layout>
         </v-container>
@@ -113,7 +113,7 @@
         }
       },
       clear () {
-        this.$refs.form.reset()
+        this.$refs.meetupForm.reset()
       },
       onSubmitMeetup () {
         console.log('submitted?')
