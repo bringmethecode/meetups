@@ -10,13 +10,15 @@ export const store = new Vuex.Store({
         id: 'ajaja',
         title: 'M1',
         imageUrl: 'https://assets3.thrillist.com/v1/image/2078277/size/tmg-facebook_social.jpg',
-        date: '2017-01-02'
+        date: '2017-01-02',
+        description: ''
       },
       {
         id: 'ajajajaja',
         title: 'M2',
         imageUrl: 'https://www.holidayguru.ie/wp-content/uploads/2017/01/Time-Square-New-York-City-iStock-487537456-2.jpg',
-        date: '2018-01-02'
+        date: '2018-01-02',
+        description: ''
       }
     ],
     user: {
@@ -24,8 +26,16 @@ export const store = new Vuex.Store({
       registeredMeetups: []
     }
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    createMeetup (state, payload) {
+      state.loadedMeetups.push(payload)
+    }
+  },
+  actions: {
+    createMeetup ({commit}, payload) {
+      commit('createMeetup', payload)
+    }
+  },
   getters: {
     loadedMeetups (state) {
       return state.loadedMeetups.sort((meetupA, meetupB) => {

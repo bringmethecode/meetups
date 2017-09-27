@@ -1,53 +1,70 @@
 <template>
-  <v-layout class="mt-5">
+  <v-layout :class="addMargin">
     <v-flex xs12 sm6 offset-sm3>
       <v-card>
-        <v-card-media :src="require('@/assets/map.jpg')" height="200px">
+        <v-card-media :src="imageUrl" height="200px">
           <v-container fill-height fluid>
             <v-layout fill-height>
               <v-flex class="buttonContainer text-xs-center" xs12 align-center flexbox>
                 <v-btn class="addPhoto" flat>
                   <v-icon dark>add_a_photo</v-icon>
                 </v-btn>
+                <br />
+                <span class="photoDesc">ADD MEETUP IMAGE</span>
               </v-flex>
             </v-layout>
           </v-container>
         </v-card-media>
         <v-container>
           <v-layout>
-            <v-flex>
-              <h6 title class="text-xs-center">ADD A NEW MEETUP</h6>
-              <v-form v-model="valid" ref="form">
+            <v-flex xs10 offset-xs1>
+              <h6 title class="text-xs-center">ORGANIZE A NEW MEETUP</h6>
+              <v-form
+                v-model="valid"
+                ref="form"
+                @submit.prevent="onSubmitMeetup"
+              >
                 <v-text-field
-                  label="Name"
-                  v-model="name"
-                  :rules="nameRules"
-                  :counter="10"
+                  label="Meetup Title"
+                  name="title"
+                  id="title"
+                  v-model="title"
+                  :rules="titleRules"
                   required
                 ></v-text-field>
                 <v-text-field
-                  label="E-mail"
-                  v-model="email"
-                  :rules="emailRules"
+                  label="Location"
+                  name="location"
+                  id="location"
+                  v-model="location"
+                  :rules="locationRules"
                   required
                 ></v-text-field>
-                <v-select
-                  label="Item"
-                  v-model="select"
-                  :items="items"
-                  :rules="[(v) => !!v || 'Item is required']"
+                <v-text-field
+                  label="Description"
+                  name="description"
+                  id="description"
+                  v-model="description"
+                  :rules="descriptionRules"
+                  multi-line
                   required
-                ></v-select>
-                <v-checkbox
-                  label="Do you agree?"
-                  v-model="checkbox"
-                  :rules="[(v) => !!v || 'You must agree to continue!']"
-                  required
-                ></v-checkbox>
-
-                <v-btn @click="submit" :class="{ green: valid, red: !valid }">submit</v-btn>
-                <v-btn @click="clear">clear</v-btn>
+                ></v-text-field>
               </v-form>
+            </v-flex>
+          </v-layout>
+        </v-container>
+        <v-container>
+          <v-layout>
+            <v-flex xs6 sm4 offset-xs3 offset-sm4>
+              <v-card-actions>
+                <v-btn
+                  type="submit"
+                  :class="{ green: valid, red: !valid }"
+                  :disabled="!valid"
+                >create :D
+                </v-btn>
+                <v-btn @click="clear">clear :(</v-btn>
+              </v-card-actions>
             </v-flex>
           </v-layout>
         </v-container>
@@ -61,43 +78,66 @@
     name: 'organize',
     data () {
       return {
-        valid: false,
-        name: '',
-        nameRules: [
-          (v) => !!v || 'Name is required',
-          (v) => v && v.length <= 10 || 'Name must be less than 10 characters'
+        isMobile: false,
+        imageUrl: require('@/assets/map.jpg'),
+        title: '',
+        location: '',
+        description: '',
+        titleRules: [
+          (v) => !!v || 'Title is required',
+          (v) => v && v.length >= 5 || 'Title must be at least 5 characters'
         ],
-        email: '',
-        emailRules: [
-          (v) => !!v || 'E-mail is required'
+        locationRules: [
+          (v) => !!v || 'Location is required',
+          (v) => v && v.length >= 10 || 'Please give a more detailed address'
         ],
-        select: null,
-        items: [
-          'Item 1',
-          'Item 2',
-          'Item 3',
-          'Item 4'
+        descriptionRules: [
+          (v) => !!v || 'Description is required',
+          (v) => v && v.length >= 50 || 'So little info = :('
         ],
-        checkbox: false
+        valid: false
+      }
+    },
+    computed: {
+      addMargin: function () {
+        if (window.innerWidth > 600) {
+          return 'mt-5'
+        }
       }
     },
     methods: {
       submit () {
+        console.log(this.valid)
         if (this.$refs.form.validate()) {
           this.$refs.form.$el.submit()
         }
       },
       clear () {
         this.$refs.form.reset()
+      },
+      onSubmitMeetup () {
+        console.log('submitted?')
+        const data = {
+          title: this.title,
+          location: this.location,
+          imageUrl: this.imageUrl,
+          description: this.description,
+          date: new Date()
+        }
+        this.$store.dispatch('createMeetup', data)
+        console.log('data sent')
       }
     }
-
   }
 </script>
 
 <style scoped>
 .buttonContainer {
   align-self: center;
+}
+.photoDesc {
+  color: #fff;
+  font-weight: 900;
 }
 .addPhoto {
   border-radius: 50%;
