@@ -57,9 +57,9 @@
                           type="submit"
                           :class="{ green: valid, red: !valid }"
                           :disabled="!valid"
-                        >create :D
+                        >create
                         </v-btn>
-                        <v-btn @click="clear">clear :(</v-btn>
+                        <v-btn @click="clear">clear</v-btn>
                       </v-card-actions>
                     </v-flex>
                   </v-layout>
@@ -116,8 +116,11 @@
         this.$refs.meetupForm.reset()
       },
       onSubmitMeetup () {
-        console.log('submitted?')
+        if (!this.valid) {
+          return
+        }
         const data = {
+          id: this.title,
           title: this.title,
           location: this.location,
           imageUrl: this.imageUrl,
@@ -125,7 +128,7 @@
           date: new Date()
         }
         this.$store.dispatch('createMeetup', data)
-        console.log('data sent')
+        this.$router.push('/meetups')
       }
     }
   }

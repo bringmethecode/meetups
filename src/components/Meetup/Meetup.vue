@@ -18,7 +18,10 @@
           </v-card-media>
           <v-card-title>
             <div>
-              <h6 title class="grey--text mb-3">{{ meetup.date }}</h6>
+              <blockquote class="meetupInfo">
+                <h5 class="grey--text">{{ meetup.location }}</h5>
+                <h6 class="grey--text">{{ meetup.date }}</h6>
+              </blockquote>
               <span>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur</span>
             </div>
           </v-card-title>
@@ -61,5 +64,16 @@ export default {
   background: rgba(0,0,0,1);
   padding: 0.2em 0.5em;
 }
-
+.meetupInfo {
+  padding: 0.5em 1em;
+  margin-bottom: 1em;
+}
+.meetupInfo h6 {
+  font-size: 0.9em;
+  margin: 0 !important;
+}
+.meetupInfo h5 {
+  font-weight: 700;
+  font-size: 1.1em;
+}
 </style>
