@@ -1,29 +1,31 @@
 <template>
   <v-layout :class="addMargin">
     <v-flex xs12 sm6 offset-sm3>
+      <h6 title class="formTitle">ORGANIZE A NEW MEETUP</h6>
       <v-card>
-        <v-card-media :src="imageUrl" height="200px">
-          <v-container fill-height fluid>
-            <v-layout fill-height>
-              <v-flex class="buttonContainer text-xs-center" xs12 align-center flexbox>
-                <v-btn class="addPhoto" flat>
-                  <v-icon dark>add_a_photo</v-icon>
-                </v-btn>
-                <br />
-                <span class="photoDesc">ADD MEETUP IMAGE</span>
-              </v-flex>
-            </v-layout>
-          </v-container>
-        </v-card-media>
-        <v-container>
-          <v-layout>
-            <v-flex xs10 offset-xs1>
-              <h6 title class="text-xs-center">ORGANIZE A NEW MEETUP</h6>
-              <v-form
-                v-model="valid"
-                ref="meetupForm"
-                @submit.prevent="onSubmitMeetup"
-              >
+        <v-form
+          v-model="valid"
+          ref="meetupForm"
+          @submit.prevent="onSubmitMeetup"
+        >
+
+          <v-card-media :src="imageUrl" height="200px">
+            <v-container fill-height fluid>
+              <v-layout fill-height>
+                <v-flex class="buttonContainer text-xs-center" xs12 align-center flexbox>
+                  <v-btn class="addPhoto" flat>
+                    <v-icon dark>add_a_photo</v-icon>
+                  </v-btn>
+                  <br />
+                  <span class="photoDesc">ADD MEETUP IMAGE</span>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-card-media>
+
+          <v-container>
+            <v-layout>
+              <v-flex xs10 offset-xs1>
                 <v-text-field
                   label="Meetup Title"
                   name="title"
@@ -52,7 +54,7 @@
                 <v-container class="pa-0">
                   <v-layout>
                     <v-flex xs6 offset-xs3>
-                      <v-card-actions>
+                      <v-card-actions class="justifyContent">
                         <v-btn
                           type="submit"
                           :class="{ green: valid, red: !valid }"
@@ -64,10 +66,11 @@
                     </v-flex>
                   </v-layout>
                 </v-container>
-              </v-form>
-            </v-flex>
-          </v-layout>
-        </v-container>
+              </v-flex>
+            </v-layout>
+          </v-container>
+
+        </v-form>
       </v-card>
     </v-flex>
   </v-layout>
@@ -135,6 +138,13 @@
 </script>
 
 <style scoped>
+.justifyContent {
+  justify-content: center;
+}
+.formTitle {
+  color: #FFB300;
+  text-align: center;
+}
 .buttonContainer {
   align-self: center;
 }

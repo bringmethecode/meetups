@@ -22,7 +22,7 @@
                 <h5 class="grey--text">{{ meetup.location }}</h5>
                 <h6 class="grey--text">{{ meetup.date }}</h6>
               </blockquote>
-              <span>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur</span>
+              <span>{{ meetup.description }}</span>
             </div>
           </v-card-title>
           <v-card-actions>
@@ -32,7 +32,7 @@
             </v-btn>
             <v-btn flat primary>
               <v-icon left>favorite</v-icon>
-              Explore
+              Subscribe
             </v-btn>
           </v-card-actions>
         </v-card>

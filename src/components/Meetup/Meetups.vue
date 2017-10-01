@@ -10,7 +10,7 @@
       v-for="meetup in meetups"
       :key="meetup.id"
     >
-      <v-flex xs12 sm8 offset-sm2>
+      <v-flex xs12 sm8 md6 offset-sm2 offset-md3>
         <v-card class="cyan darken-2 white--text">
           <v-container fluid>
             <v-layout row>
